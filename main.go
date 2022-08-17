@@ -62,17 +62,26 @@ Example:
 
 	// 打印版本信息
 	if cliVersion {
-		fmt.Println("v1.00")
+		fmt.Println("v1.01")
 		os.Exit(0)
 	}
 }
 
 func main() {
 	if cliURLBegin != "" && cliURLEnd != "" {
-		validChannel := checkChannelCode(cliURLBegin, cliURLEnd, cliChannelCodeBegin, cliChannelCodeEnd, cliChannelCodeInterval)
-		err := makeM3u(validChannel, cliOutputFile)
+		// 单线程
+		//validChannel := checkChannelCode(cliURLBegin, cliURLEnd, cliChannelCodeBegin, cliChannelCodeEnd, cliChannelCodeInterval)
+		//err := makeM3u(validChannel, cliOutputFile)
+		//if err != nil {
+		//	log.Panicln(err)
+		//}
+
+		//	多线程
+		validResults := checkAllURL(cliURLBegin, cliURLEnd, cliChannelCodeBegin, cliChannelCodeEnd, cliChannelCodeInterval, 3)
+		err := makeM3u(validResultsToChannels(validResults), cliOutputFile)
 		if err != nil {
 			log.Panicln(err)
 		}
+
 	}
 }

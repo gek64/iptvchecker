@@ -6,6 +6,14 @@ import (
 	"strconv"
 )
 
+// 提取validResults中的URL拼接为channels
+func validResultsToChannels(validResults []validResult) (channels []string) {
+	for _, result := range validResults {
+		channels = append(channels, result.url)
+	}
+	return channels
+}
+
 // 制作m3u文件,channels频道切片,file输出文件
 func makeM3u(channels []string, file string) (err error) {
 	f, err := os.OpenFile(file, os.O_APPEND|os.O_RDWR|os.O_CREATE, 0755)

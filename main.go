@@ -13,6 +13,7 @@ var (
 	cliChannelCodeBegin    int
 	cliChannelCodeEnd      int
 	cliChannelCodeInterval int
+	cliConcurrent          int
 	cliOutputFile          string
 	cliHelp                bool
 	cliVersion             bool
@@ -24,6 +25,7 @@ func init() {
 	flag.IntVar(&cliChannelCodeBegin, "cb", 0, "-cb 0")
 	flag.IntVar(&cliChannelCodeEnd, "ce", 1000, "-ce 1000")
 	flag.IntVar(&cliChannelCodeInterval, "i", 1, "-i 1")
+	flag.IntVar(&cliConcurrent, "x", 3, "-x 3")
 	flag.StringVar(&cliOutputFile, "o", "iptv.m3u", "-o iptv.m3u")
 	flag.BoolVar(&cliHelp, "h", false, "show help")
 	flag.BoolVar(&cliVersion, "v", false, "show version")
@@ -62,7 +64,7 @@ Example:
 
 	// 打印版本信息
 	if cliVersion {
-		fmt.Println("v1.01")
+		fmt.Println("v1.02")
 		os.Exit(0)
 	}
 }
@@ -77,7 +79,7 @@ func main() {
 		//}
 
 		//	多线程
-		validResults := checkAllURL(cliURLBegin, cliURLEnd, cliChannelCodeBegin, cliChannelCodeEnd, cliChannelCodeInterval, 3)
+		validResults := checkAllURL(cliURLBegin, cliURLEnd, cliChannelCodeBegin, cliChannelCodeEnd, cliChannelCodeInterval, cliConcurrent)
 		err := makeM3u(validResultsToChannels(validResults), cliOutputFile)
 		if err != nil {
 			log.Panicln(err)

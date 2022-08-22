@@ -43,6 +43,7 @@ Parameters:
   -ce       : Channel Code End
   -i        : Channel Code Interval
   -o        : Output File
+  -x        : Number of parallel processing, default 3
 
 Commands:
   -h        : show help

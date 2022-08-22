@@ -13,15 +13,17 @@ Parameters:
   -ce       : Channel Code End
   -i        : Channel Code Interval
   -o        : Output File
+  -x        : Number of parallel processing, default 3
 
 Commands:
   -h        : show help
   -v        : show version
 
 Example:
-  1) iptvchecker -ub "http://127.0.0.1/PLTV/88888888/224/" -ue "/index.m3u8" -cb 0 -ce 1000 -i 1 -o "iptv.m3u"
+  1) iptvchecker -ub "http://127.0.0.1/PLTV/88888888/999/" -ue "/index.m3u8" -cb 0 -ce 1000 -i 1 -o "iptv.m3u"
   2) iptvchecker -h
   3) iptvchecker -v
+
 ```
 
 ## Install
